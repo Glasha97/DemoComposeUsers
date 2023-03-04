@@ -21,7 +21,6 @@ class LocalUserDataSourceImpl @Inject constructor(private val userDao: UserDao) 
     override fun userPagingSource(): PagingSource<Int, UserEntity> =
         userDao.userPagingSource()
 
-
     override suspend fun updateIsFavourite(isFavourite: Boolean, userId: Long) =
         userDao.updateIsFavourite(isFavourite, userId)
 

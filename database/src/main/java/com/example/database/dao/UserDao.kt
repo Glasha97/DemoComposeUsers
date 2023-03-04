@@ -49,6 +49,5 @@ abstract class UserDao : BaseDao<UserEntity>() {
                 )
             }
         }
-
     }
 }

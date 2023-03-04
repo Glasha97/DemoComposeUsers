@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -24,7 +25,6 @@ import coil.compose.AsyncImage
 fun UserPage(vm: UserViewModel) {
     Column(
         modifier = Modifier
-            .background(Color.White)
             .fillMaxSize()
             .padding(16.dp)
     ) {
@@ -53,13 +53,13 @@ private fun UserInfoRow(placeHolder: String, data: String) {
     Column(
         modifier = Modifier
             .clip(shape = RoundedCornerShape(size = 4.dp))
-            .background(color = Color(0xfff3f5f9))
+            .background(color =  MaterialTheme.colors.primaryVariant)
             .fillMaxWidth()
             .padding(vertical = 12.dp, horizontal = 8.dp)
     ) {
-        Text(text = placeHolder, color = Color(0xFF808186))
+        Text(text = placeHolder, color = MaterialTheme.colors.onPrimary)
         Spacer(modifier = Modifier.size(4.dp))
-        Text(text = data, color = Color.Black)
+        Text(text = data, color = MaterialTheme.colors.onPrimary)
     }
 
     Spacer(modifier = Modifier.size(16.dp))

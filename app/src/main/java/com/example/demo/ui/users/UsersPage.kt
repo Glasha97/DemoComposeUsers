@@ -1,6 +1,7 @@
 package com.example.demo.ui.users
 
 import android.widget.Toast
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Arrangement.SpaceBetween
@@ -15,12 +16,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Button
-import androidx.compose.material.Card
-import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.Text
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
@@ -52,19 +49,23 @@ fun UsersPage(viewModel: UsersPageViewModel, onUserClick: (User) -> Unit) {
             horizontalArrangement = SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(text = "Users", color = Color.Black, fontWeight = W700, fontSize = 24.sp)
+            Text(text = "Users", color = MaterialTheme.colors.secondary, fontWeight = W700, fontSize = 24.sp)
             Row() {
-                Button(onClick = { viewModel.onEvent(Contract.Event.FetchUsers) }) { Text(text = "Refresh") }
+                Button(onClick = { viewModel.onEvent(Contract.Event.FetchUsers) }) {
+                    Text(
+                        text = "Refresh",
+                        color = MaterialTheme.colors.primaryVariant
+                    )
+                }
                 Spacer(modifier = Modifier.size(12.dp))
-                Button(onClick = {
-                    viewModel.onEvent(Contract.Event.OnFavouriteClicked)
-                }) { Text(text = "Favourite") }
+                Button(onClick = { viewModel.onEvent(Contract.Event.OnFavouriteClicked) }) {
+                    Text(text = "Favourite", color = MaterialTheme.colors.primaryVariant)
+                }
             }
         }
 
         LazyColumn(
-            contentPadding = PaddingValues(16.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp),
+            contentPadding = PaddingValues(horizontal = 16.dp),
             modifier = Modifier.fillMaxWidth()
         ) {
             itemsIndexed(users, key = { _, item -> item.id }) { _, item ->
@@ -104,26 +105,31 @@ fun UsersPage(viewModel: UsersPageViewModel, onUserClick: (User) -> Unit) {
 
 @Composable
 fun UserItem(user: User, onUserClick: () -> Unit, onFavouriteClick: () -> Unit) {
+    Spacer(modifier = Modifier.size(8.dp))
     Card(
         modifier = Modifier
+            .background(MaterialTheme.colors.primaryVariant, RoundedCornerShape(4.dp))
             .fillMaxWidth()
-            .clickable { onUserClick() }, elevation = 0.dp
+            .clickable { onUserClick() },
+        elevation = 0.dp,
+        backgroundColor = MaterialTheme.colors.primaryVariant
     ) {
-        Row(modifier = Modifier.padding(8.dp)) {
+        
+        Row(modifier = Modifier.padding(8.dp), verticalAlignment = Alignment.CenterVertically) {
             AsyncImage(
                 model = user.avatar,
                 contentDescription = null,
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
-                    .size(64.dp)
+                    .size(56.dp)
                     .clip(CircleShape)
             )
 
             Spacer(modifier = Modifier.size(16.dp))
             Column(modifier = Modifier.weight(1f)) {
-                Text(text = "${user.firstName} ${user.lastName}", color = Color.Black)
+                Text(text = "${user.firstName} ${user.lastName}", color = MaterialTheme.colors.onPrimary)
                 Spacer(modifier = Modifier.size(4.dp))
-                Text(text = user.email, color = Color(0xFF808186))
+                Text(text = user.email, color = MaterialTheme.colors.onPrimary)
             }
             Spacer(modifier = Modifier.size(12.dp))
 
