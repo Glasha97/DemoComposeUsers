@@ -17,7 +17,7 @@ class UserViewModel @Inject constructor(
 ) : BaseViewModel<Contract.State, Contract.Event, Contract.Effect>(Contract.State(User())) {
 
     init {
-        savedStateHandle.get<String>("userId")?.toLongOrNull()
+        savedStateHandle.get<String>(USER_ID)?.toLongOrNull()
             ?.let { onEvent(Contract.Event.ShowDetails(it)) }
     }
 
@@ -28,8 +28,15 @@ class UserViewModel @Inject constructor(
             }
         }
 
-    override suspend fun updateState(effect: Contract.Effect, state: Contract.State): Contract.State =
+    override suspend fun updateState(
+        effect: Contract.Effect,
+        state: Contract.State
+    ): Contract.State =
         when (effect) {
             is Contract.Effect.ShowDetails -> state.copy(user = effect.user)
         }
+
+    companion object {
+        private const val USER_ID = "userId"
+    }
 }

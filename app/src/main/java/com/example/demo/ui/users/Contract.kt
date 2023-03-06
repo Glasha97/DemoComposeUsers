@@ -19,13 +19,13 @@ interface Contract {
 
     sealed interface Event : UiEvent {
         object FetchUsers : Event
-        data class OnUpdateFavouriteClicked(val isFavourite: Boolean, val userId: Long) : Event
-        object OnFavouriteClicked : Event
+        data class OnUpdateFavouriteUserClicked(val isFavourite: Boolean, val userId: Long) : Event
+        object OnFavouriteButtonClicked : Event
     }
 
     sealed interface Effect : UiEffect {
         object InitPaging : Effect
-        object UpdateFavourite : Effect
-        data class UpdateFavouriteClicked(val isFavourite: Boolean, val userId: Long) : Effect
+        data class OnUpdateFavouriteUserClicked(val isFavourite: Boolean, val userId: Long) : Effect
+        object OnFavouriteButtonClicked : Effect
     }
 }

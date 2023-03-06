@@ -75,12 +75,16 @@ dependencies {
     implementation libs.hilt.android
     implementation libs.kotlinx.coroutines.android
     implementation libs.compose.coil
-    kapt(libs.hilt.compiler)
 
     testImplementation libs.junit
+    testImplementation libs.io.mockk
+    testImplementation libs.io.mockk.android
+    testImplementation libs.coroutine.test
+
     androidTestImplementation libs.androidx.test.ext.junit
     androidTestImplementation libs.androidx.compose.ui.test.junit4
     debugImplementation libs.androidx.compose.ui.tooling
     debugImplementation libs.androidx.compose.ui.test.manifest
+    kapt(libs.hilt.compiler)
 
 }

@@ -3,7 +3,6 @@ package com.example.demo.ui.users
 import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Arrangement.SpaceBetween
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -23,7 +22,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -35,10 +33,10 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemsIndexed
 import coil.compose.AsyncImage
 import com.example.data.models.user.ui.User
-import com.example.demo.ui.users.Contract.Event.OnUpdateFavouriteClicked
+import com.example.demo.ui.users.Contract.Event.OnUpdateFavouriteUserClicked
 
 @Composable
-fun UsersPage(viewModel: UsersPageViewModel, onUserClick: (User) -> Unit) {
+fun UsersPage(viewModel: UsersViewModel, onUserClick: (User) -> Unit) {
     val state = viewModel.state.collectAsState()
     val users = state.value.pagingFlow.collectAsLazyPagingItems()
     Column(modifier = Modifier.fillMaxSize()) {
@@ -58,7 +56,7 @@ fun UsersPage(viewModel: UsersPageViewModel, onUserClick: (User) -> Unit) {
                     )
                 }
                 Spacer(modifier = Modifier.size(12.dp))
-                Button(onClick = { viewModel.onEvent(Contract.Event.OnFavouriteClicked) }) {
+                Button(onClick = { viewModel.onEvent(Contract.Event.OnFavouriteButtonClicked) }) {
                     Text(text = "Favourite", color = MaterialTheme.colors.primaryVariant)
                 }
             }
@@ -75,7 +73,7 @@ fun UsersPage(viewModel: UsersPageViewModel, onUserClick: (User) -> Unit) {
                             it,
                             onUserClick = { onUserClick(item) },
                             onFavouriteClick = {
-                                viewModel.onEvent(OnUpdateFavouriteClicked(!it.isFavourite, it.id))
+                                viewModel.onEvent(OnUpdateFavouriteUserClicked(!it.isFavourite, it.id))
                             }
                         )
                     }
