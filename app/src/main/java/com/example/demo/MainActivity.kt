@@ -32,6 +32,7 @@ class MainActivity : ComponentActivity() {
                     val navController = rememberNavController()
                     NavHost(navController = navController, startDestination = "users") {
                         composable(USERS_PAGE.route) {
+
                             UsersPage(hiltViewModel()) { navController.navigate("userPage/${it.id}") }
                         }
                         composable(USER_DETAILS.route) { UserPage(hiltViewModel()) }
