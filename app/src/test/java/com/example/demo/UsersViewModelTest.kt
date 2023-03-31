@@ -126,4 +126,9 @@ class UsersViewModelTest {
         }
         coVerify { rep.updateIsFavourite(true, 1) }
     }
+
+    @Test
+    fun test(){
+        assertTrue(true)
+    }
 }
