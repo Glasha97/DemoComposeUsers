@@ -6,7 +6,7 @@ plugins {
 }
 
 apply plugin: 'com.google.dagger.hilt.android'
-
+apply plugin: 'com.google.gms.google-services'
 android {
     namespace 'com.example.demo'
     compileSdk 33
@@ -86,5 +86,7 @@ dependencies {
     debugImplementation libs.androidx.compose.ui.tooling
     debugImplementation libs.androidx.compose.ui.test.manifest
     kapt(libs.hilt.compiler)
+
+    implementation platform('com.google.firebase:firebase-bom:31.3.0')
 
 }
