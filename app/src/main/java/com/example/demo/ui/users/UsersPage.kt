@@ -79,7 +79,6 @@ fun UsersPage(viewModel: UsersViewModel, onUserClick: (User) -> Unit) {
                     }
                 }
             }
-
         }
 
         when (val pagingState = users.loadState.refresh) {
