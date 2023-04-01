@@ -7,6 +7,7 @@ plugins {
 
 apply plugin: 'com.google.dagger.hilt.android'
 apply plugin: 'com.google.gms.google-services'
+
 android {
     namespace 'com.example.demo'
     compileSdk 33
@@ -75,6 +76,7 @@ dependencies {
     implementation libs.hilt.android
     implementation libs.kotlinx.coroutines.android
     implementation libs.compose.coil
+    implementation libs.firebase.bom
 
     testImplementation libs.junit
     testImplementation libs.io.mockk
