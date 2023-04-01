@@ -36,7 +36,6 @@ class MainActivity : ComponentActivity() {
                             UsersPage(hiltViewModel()) { navController.navigate("userPage/${it.id}") }
                         }
                         composable(USER_DETAILS.route) { UserPage(hiltViewModel()) }
-                        kjh
                     }
                 }
             }
