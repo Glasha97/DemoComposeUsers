@@ -1,7 +1,7 @@
 name: Check Unit Test
 on:
   pull_request:
-    branches: [ main ]
+    branches: [ main, develop ]
 
 jobs:
   checkUnitTest:
