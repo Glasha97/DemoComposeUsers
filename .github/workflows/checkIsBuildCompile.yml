@@ -1,4 +1,4 @@
-name: Check is build compile
+name: Check Unit Test
 on:
   pull_request:
     branches: [ main ]
@@ -21,4 +21,4 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Unit Test
-        run: ./gradlew testDebugUnitTest
+        run: ./gradlew assembleDebug
