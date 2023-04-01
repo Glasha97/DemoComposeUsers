@@ -1,4 +1,4 @@
-name: Check is build compile
+name: Check Unit Test
 on:
   pull_request:
     branches: [ main ]
