@@ -14,7 +14,9 @@ import com.example.demo.ui.users.UsersViewModel
 import io.mockk.*
 import io.mockk.impl.annotations.MockK
 import io.mockk.junit4.MockKRule
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.emptyFlow
+import kotlinx.coroutines.runBlocking
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
@@ -101,7 +103,10 @@ class UsersViewModelTest {
         coVerify() {
             vm.updateState(
                 Contract.Effect.OnFavouriteButtonClicked,
-                Contract.State(favouriteList = users.filter { it.isFavourite }, showOnlyFavourite = false)
+                Contract.State(
+                    favouriteList = users.filter { it.isFavourite },
+                    showOnlyFavourite = false
+                )
             )
         }
         assertEquals(users.filter { it.isFavourite }, vm.state.value.favouriteList)
@@ -109,7 +114,12 @@ class UsersViewModelTest {
 
         vm.onEvent(Contract.Event.OnFavouriteButtonClicked)
 
-        coVerify() { vm.updateState(Contract.Effect.OnFavouriteButtonClicked, Contract.State()) }
+        coVerify() {
+            vm.updateState(
+                Contract.Effect.OnFavouriteButtonClicked,
+                Contract.State()
+            )
+        }
         assertEquals(vm.state.value.favouriteList, emptyList<User>())
         assertFalse(vm.state.value.showOnlyFavourite)
     }
@@ -125,5 +135,10 @@ class UsersViewModelTest {
             )
         }
         coVerify { rep.updateIsFavourite(true, 1) }
+    }
+
+    @Test
+    fun test() {
+        assertTrue(true)
     }
 }
