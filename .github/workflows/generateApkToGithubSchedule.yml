@@ -1,4 +1,4 @@
-name: Generate Debug Apk to Github
+name: Generate Debug Apk to Github at 00:00
 on:
   schedule:
   - cron: '0 0 * * *'
